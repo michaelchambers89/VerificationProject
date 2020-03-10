@@ -1,5 +1,3 @@
-
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +5,7 @@ import java.util.List;
 //import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
-public class ChambersMichaelTestTask2 {
+public class ChambersMichaelTestTask3 {
     public Period a, b, c, d, e, f, periodStay;
     public ArrayList<Period> normalPeriod;
     public ArrayList<Period> reducedPeriod;
@@ -426,24 +424,6 @@ public class ChambersMichaelTestTask2 {
 
 
     //Task 3
-    @org.junit.Test
-    public void CalculateNormalOverLapReduced() {
-        a = new Period(7, 17);
-        b = new Period(18, 23);
-        periodStay = new Period(16, 19);
-
-        ArrayList<Period> normalPeriod = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriod = new ArrayList<Period>();
-        normalPeriod.add(a);
-        reducedPeriod.add(b);
-
-        CarParkKind kind= CarParkKind.MANAGEMENT;
-        BigDecimal normal = new BigDecimal(7);
-        BigDecimal reduced = new BigDecimal(5);
-        Rate test = new Rate(kind,normal,reduced,reducedPeriod,normalPeriod);
-        BigDecimal outCome = new BigDecimal(12);
-        assertEquals(outCome, test.calculate(periodStay));
-    }
 
     @org.junit.Test
     public void MoreThan8Visitor()
@@ -471,13 +451,11 @@ public class ChambersMichaelTestTask2 {
 
         Rate test = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
         Period hours = new Period(7,16);
-        BigDecimal result = rate.calculate(hours);
+        BigDecimal result = test.calculate(hours);
 
         BigDecimal expected = new BigDecimal("7.00");
 
         assertEquals(result,expected);
     }
 
-
 }
-
