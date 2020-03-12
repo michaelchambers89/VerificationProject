@@ -689,4 +689,70 @@ public class ChambersMichaelTestTask3 {
         assertEquals(result,outcome);
     }
 
+    @org.junit.Test
+    public void CostGreaterThan16Staff()
+    {
+        a = new Period(2,6);
+        b = new Period(14,16);
+
+        c = new Period(7,12);
+        d = new Period(17,19);
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+        reducedPeriods.add(a);
+        reducedPeriods.add(b);
+
+        normalPeriods.add(c);
+        normalPeriods.add(d);
+
+
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
+
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period hours = new Period(7,19);
+        BigDecimal result = test.calculate(hours);
+
+        BigDecimal outcome = new BigDecimal("16.0");
+
+        assertEquals(result,outcome);
+    }
+
+    @org.junit.Test
+    public void CostLessThan16Staff()
+    {
+        a = new Period(2,6);
+        b = new Period(14,16);
+
+        c = new Period(7,12);
+        d = new Period(17,19);
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+        reducedPeriods.add(a);
+        reducedPeriods.add(b);
+
+        normalPeriods.add(c);
+        normalPeriods.add(d);
+
+
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
+
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period hours = new Period(7,19);
+        BigDecimal result = test.calculate(hours);
+
+        BigDecimal outcome = new BigDecimal("10");
+
+        assertEquals(result,outcome);
+    }
+
 }
