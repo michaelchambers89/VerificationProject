@@ -423,7 +423,9 @@ public class ChambersMichaelTestTask3 {
     }
 
 
+
     //Task 3
+
 
     @org.junit.Test
     public void MoreThan8Visitor()
@@ -453,9 +455,9 @@ public class ChambersMichaelTestTask3 {
         Period hours = new Period(7,16);
         BigDecimal result = test.calculate(hours);
 
-        BigDecimal expected = new BigDecimal("7.00");
+        BigDecimal outcome = new BigDecimal(7);
 
-        assertEquals(result,expected);
+        assertEquals(result,outcome);
     }
 
 }
