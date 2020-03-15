@@ -773,4 +773,33 @@ public class ChambersMichaelTestTask3 {
         assertEquals(result,outcome);
     }
 
+    @org.junit.Test
+    public void StaffRateTest()
+    {
+        a = new Period(16,18);
+        b = new Period(8,15);
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+
+        reducedPeriods.add(a);
+        normalPeriods.add(b);
+
+
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(3);
+
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period stay = new Period(9,10);
+        BigDecimal result = test.calculate(stay);
+
+        BigDecimal outcome = new BigDecimal("7.00");
+
+        assertEquals(result,outcome);
+    }
+
+
+
 }
