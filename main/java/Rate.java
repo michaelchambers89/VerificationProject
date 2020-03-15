@@ -11,6 +11,7 @@ public class Rate {
     private BigDecimal hourlyReducedRate;
     private ArrayList<Period> reduced = new ArrayList<Period>();
     private ArrayList<Period> normal = new ArrayList<Period>();
+    ICalculateRates calc;
 
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> reducedPeriods
             , ArrayList<Period> normalPeriods) {
@@ -89,11 +90,33 @@ public class Rate {
         }
         return isValid;
     }
+
     public BigDecimal calculate(Period periodStay) {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        int placeRound = 2;
+
+        BigDecimal rate = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+
+        switch (this.kind){
+            case VISITOR :
+                calc = new VisitorCalculate();
+                rate =  calc.calculateReduction(rate).setScale(placeRound);
+                break;
+            case STUDENT:
+                calc = new StudentCalculate();
+                rate = calc.calculateReduction(rate).setScale(placeRound);
+                break;
+            case STAFF:
+                calc = new StaffCalculate();
+                rate = calc.calculateReduction(rate).setScale(placeRound);
+                break;
+            case MANAGEMENT:
+                calc = new ManagementCalculate();
+                rate = calc.calculateReduction(rate).setScale(placeRound);
+                break;
+        }
+        return rate;
     }
 
 }

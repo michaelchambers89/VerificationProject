@@ -194,80 +194,104 @@ public class ChambersMichaelTestTask3 {
     }
 
     @org.junit.Test
-    public void CalculatePeriodWithinReducedPeriod() {
-        a = new Period(7, 17);
-        b = new Period(18, 23);
-        periodStay = new Period(18, 22);
+    public void CalculatePeriodWithinReducedPeriod()
+    {
+        a = new Period(7,17);
+        b = new Period(18,23);
 
-        ArrayList<Period> normalPeriod = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriod = new ArrayList<Period>();
-        normalPeriod.add(a);
-        reducedPeriod.add(b);
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalPeriods.add(a);
+        reducedPeriods.add(b);
 
-        CarParkKind kind= CarParkKind.MANAGEMENT;
-        BigDecimal normal = new BigDecimal(7);
-        BigDecimal reduced = new BigDecimal(5);
-        Rate test = new Rate(kind,normal,reduced,reducedPeriod,normalPeriod);
-        BigDecimal outCome = new BigDecimal(20);
-        assertEquals(outCome, test.calculate(periodStay));
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
+
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period stay = new Period(18,22);
+        BigDecimal result = test.calculate(stay);
+
+        BigDecimal outcome = new BigDecimal("20.00");
+
+        assertEquals(result,outcome);
     }
 
     @org.junit.Test
-    public void CalculatePeriodWithinNormalPeriod() {
-        a = new Period(7, 17);
-        b = new Period(18, 23);
-        periodStay = new Period(7, 10);
+    public void CalculatePeriodWithinNormalPeriod()
+    {
+        a = new Period(7,17);
+        b = new Period(18,23);
 
-        ArrayList<Period> normalPeriod = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriod = new ArrayList<Period>();
-        normalPeriod.add(a);
-        reducedPeriod.add(b);
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalPeriods.add(a);
+        reducedPeriods.add(b);
 
-        CarParkKind kind= CarParkKind.MANAGEMENT;
-        BigDecimal normal = new BigDecimal(7);
-        BigDecimal reduced = new BigDecimal(5);
-        Rate test = new Rate(kind,normal,reduced,reducedPeriod,normalPeriod);
-        BigDecimal outCome = new BigDecimal(21);
-        assertEquals(outCome, test.calculate(periodStay));
-    }
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
 
-    @org.junit.Test
-    public void CalculatePeriodWithinFree() {
-        a = new Period(7, 17);
-        b = new Period(18, 23);
-        periodStay = new Period(1, 6);
+        CarParkKind kind = CarParkKind.MANAGEMENT;
 
-        ArrayList<Period> normalPeriod = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriod = new ArrayList<Period>();
-        normalPeriod.add(a);
-        reducedPeriod.add(b);
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period stay = new Period(7,10);
+        BigDecimal result = test.calculate(stay);
 
-        CarParkKind kind= CarParkKind.MANAGEMENT;
-        BigDecimal normal = new BigDecimal(7);
-        BigDecimal reduced = new BigDecimal(5);
-        Rate test = new Rate(kind,normal,reduced,reducedPeriod,normalPeriod);
-        BigDecimal outCome = new BigDecimal(0);
-        assertEquals(outCome, test.calculate(periodStay));
+        BigDecimal outcome = new BigDecimal("21.00");
+
+        assertEquals(result,outcome);
     }
 
 
     @org.junit.Test
-    public void CalculateNormalOverLapReduced() {
-        a = new Period(7, 17);
-        b = new Period(18, 23);
-        periodStay = new Period(16, 19);
+    public void CalculatePeriodWithinFree()
+    {
+        a = new Period(7,17);
+        b = new Period(18,23);
 
-        ArrayList<Period> normalPeriod = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriod = new ArrayList<Period>();
-        normalPeriod.add(a);
-        reducedPeriod.add(b);
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalPeriods.add(a);
+        reducedPeriods.add(b);
 
-        CarParkKind kind= CarParkKind.MANAGEMENT;
-        BigDecimal normal = new BigDecimal(7);
-        BigDecimal reduced = new BigDecimal(5);
-        Rate test = new Rate(kind,normal,reduced,reducedPeriod,normalPeriod);
-        BigDecimal outCome = new BigDecimal(12);
-        assertEquals(outCome, test.calculate(periodStay));
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
+
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period stay = new Period(1,6);
+        BigDecimal result = test.calculate(stay);
+
+        BigDecimal outcome = new BigDecimal("3.00");
+
+        assertEquals(result,outcome);
+    }
+
+    @org.junit.Test
+    public void CalculateNormalOverLapReduced()
+    {
+        a = new Period(7,17);
+        b = new Period(18,23);
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalPeriods.add(a);
+        reducedPeriods.add(b);
+
+        normal = new BigDecimal(7);
+        reduced = new BigDecimal(5);
+
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+
+        Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
+        Period stay = new Period(16,19);
+        BigDecimal result = test.calculate(stay);
+
+        BigDecimal outcome = new BigDecimal("12.00");
+
+        assertEquals(result,outcome);
     }
 
     // Task 2
@@ -445,16 +469,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(c);
         normalPeriods.add(d);
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.VISITOR;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,16);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(7,16);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal(7);
+        BigDecimal outcome = new BigDecimal("7.00");
 
         assertEquals(result,outcome);
     }
@@ -477,16 +501,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(c);
         normalPeriods.add(d);
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.VISITOR;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,9);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(7,9);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal(0);
+        BigDecimal outcome = new BigDecimal("0.00");
 
         assertEquals(result,outcome);
     }
@@ -510,16 +534,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.VISITOR;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(2,7);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(2,7);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal(0);
+        BigDecimal outcome = new BigDecimal("0.00");
 
         assertEquals(result,outcome);
     }
@@ -543,16 +567,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.MANAGEMENT;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(1,3);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(1,3);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("3.0");
+        BigDecimal outcome = new BigDecimal("3.00");
 
         assertEquals(result,outcome);
     }
@@ -576,16 +600,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.MANAGEMENT;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,19);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(7,19);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("30");
+        BigDecimal outcome = new BigDecimal("30.00");
 
         assertEquals(result,outcome);
     }
@@ -609,16 +633,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.MANAGEMENT;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(3,5);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(3,5);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("3.0");
+        BigDecimal outcome = new BigDecimal("3.00");
 
         assertEquals(result,outcome);
     }
@@ -642,16 +666,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.STUDENT;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(4,6);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(4,6);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("2");
+        BigDecimal outcome = new BigDecimal("2.00");
 
         assertEquals(result,outcome);
     }
@@ -659,32 +683,26 @@ public class ChambersMichaelTestTask3 {
     @org.junit.Test
     public void CostGreaterThan550Student()
     {
-        a = new Period(2,6);
-        b = new Period(14,16);
-
-        c = new Period(7,12);
-        d = new Period(17,19);
+        a = new Period(13,18);
+        b = new Period(7,12);
 
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
 
         reducedPeriods.add(a);
-        reducedPeriods.add(b);
-
-        normalPeriods.add(c);
-        normalPeriods.add(d);
+        normalPeriods.add(b);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(12.5);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.STUDENT;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,15);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(6,8);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("15.75");
+        BigDecimal outcome = new BigDecimal("7.25");
 
         assertEquals(result,outcome);
     }
@@ -708,16 +726,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.STAFF;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,19);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(7,19);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("16.0");
+        BigDecimal outcome = new BigDecimal("16.00");
 
         assertEquals(result,outcome);
     }
@@ -741,16 +759,16 @@ public class ChambersMichaelTestTask3 {
         normalPeriods.add(d);
 
 
-        normal = new BigDecimal(7);
-        reduced = new BigDecimal(5);
+        normal = new BigDecimal(4);
+        reduced = new BigDecimal(1);
 
         CarParkKind kind = CarParkKind.STAFF;
 
         Rate test = new Rate(kind, normal, reduced, reducedPeriods, normalPeriods);
-        Period hours = new Period(7,19);
-        BigDecimal result = test.calculate(hours);
+        Period stay = new Period(7,19);
+        BigDecimal result = test.calculate(stay);
 
-        BigDecimal outcome = new BigDecimal("10");
+        BigDecimal outcome = new BigDecimal("16.00");
 
         assertEquals(result,outcome);
     }
